@@ -1,14 +1,16 @@
-import { useState } from "react";
-import Header from "./components/Header";
-import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import TestStock from "./pages/TestStock";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <Header />
-      <div className="main"></div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/other" element={<TestStock />} />
+      </Routes>
+    </Router>
   );
 }
 
