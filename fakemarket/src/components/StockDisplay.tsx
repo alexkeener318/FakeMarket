@@ -1,22 +1,33 @@
-import "./StockDisplay.css";
 import { useState, useEffect } from "react";
-import calcPrice from "../calculateStockPrice";
-const StockDisplay = () => {
-  const [price, setPrice] = useState<number>(300.23);
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const newPrice: number = calcPrice(price);
-      console.log(`NEW PRICE ALERT: ${newPrice}`);
-      setPrice(parseFloat(newPrice.toFixed(2)));
-    }, 2000);
+import "./StockDisplay.css";
+import useStockPrice from "../useStockPrice";
 
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(intervalId);
+const StockDisplay = () => {
+  const startPrice = 300.23;
+  const price = useStockPrice();
+  const [percentage, setPercentage] = useState("0.00%");
+
+  const calcPercent = () => {
+    return ((price - startPrice) / startPrice) * 100;
+  };
+
+  useEffect(() => {
+    setPercentage(calcPercent().toFixed(2) + "%");
+    // console.log(
+    //   `NEW PRICE ALERT: ${price}     ${percentage}      ${300.23 - price}`
+    // );
   }, [price]);
+
   return (
     <div className="stock-holder">
-      <h3 className="title"> Google </h3>
-      <p className="value"> ${price}</p>
+      <h1 className="stock-title">Google</h1>
+      <div className="graph"></div>
+      <div className="details">
+        <p className="value">Current Price: ${price}</p>
+        <p>Percent Change: {percentage}</p>
+        <button className="buy-button">Buy</button>
+        <button className="sell-button">Sell</button>
+      </div>
     </div>
   );
 };

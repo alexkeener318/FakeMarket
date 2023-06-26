@@ -1,14 +1,14 @@
 import "./Holdings.css";
 
 const Holdings = () => {
-  const stockNames = ["Apple", "Google", "Chicken"];
-  const detailedTickers: any = [];
+  // const stockNames = ["Apple", "Google", "Chicken"];
+  // const detailedTickers: any = [];
 
-  const setTickers = () => {
-    stockNames.forEach((name) => {
-      detailedTickers.push();
-    });
-  };
+  // const setTickers = () => {
+  //   stockNames.forEach((name) => {
+  //     detailedTickers.push();
+  //   });
+  // };
   return (
     <div className="holdings">
       <h3>Stock Holdings</h3>
